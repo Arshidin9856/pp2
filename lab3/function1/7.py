@@ -1,9 +1,8 @@
 def has_33(nums):
-    try:
-        for i in range(len(nums)):
+    
+        for i in range(len(nums)-1):
             if nums[i]==nums[i+1] and nums[i]=='3':
                 return True   
-    except: 
         return False
 print(has_33(input().split()))
 '''

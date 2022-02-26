@@ -10,7 +10,7 @@ class Account:
     def withdraw(self,money):
         for x,y in owners.items():
             if self.owner==x:
-                if y>=money:
+                if y>=money :
                     y-=money
                     print(f'Now you have {y}')
                 else : print('you dont have so much')
