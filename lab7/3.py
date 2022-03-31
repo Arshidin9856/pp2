@@ -2,8 +2,9 @@
 # When user presses Up, Down, Left, Right arrow keys on keyboard, the ball should move by 20 pixels in the direction of pressed key.
 # The ball should not leave the screen, i.e. user input that leads the ball to leave of the screen should be ignored
 import pygame
+import os
 pygame.init()
-screen=pygame.display.set_mode((500,500))
+screen=pygame.display.set_mode((1000,700))
 quit=True
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
@@ -17,8 +18,8 @@ while quit:
         if event.type==pygame.QUIT:
             quit=False
         if event.type==pygame.KEYDOWN:
-            # pressed = pygame.key.get_pressed()
-            if event.key==pygame.K_UP:
+            
+            if event.key==pygame.K_UP :
                 if y-20>=0+25 : y-=20
             if event.key==pygame.K_DOWN:
                 if y+20<=500-25 : y+=20   
@@ -26,8 +27,10 @@ while quit:
                 if x+20<=500-25 : x+=20
             if event.key==pygame.K_LEFT:
                 if x-20>=25 : x-=20   
-                
-    screen.fill((24,15,84)) 
+    # pressed = pygame.key.get_pressed()
+    # if pressed[pygame.K_UP]:
+    #    if y-20>=0+25 : y-=1            
+    screen.fill((24,15,84))    
     pygame.draw.circle(screen,RED,(x,y),25)
     pygame.display.flip()
       
