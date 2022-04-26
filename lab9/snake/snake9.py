@@ -102,7 +102,7 @@ class Food:
         self.x = self.my_round(random.randint(0, WINDOW_WIDTH - BLOCK_SIZE))
         self.y = self.my_round(random.randint(0, WINDOW_HEIGHT - BLOCK_SIZE))
         
-        while (self.x,self.y) in wall.body_wall and (self.x,self.y) in snake.body:
+        while (self.x,self.y) in wall.body_wall or (self.x,self.y) in snake.body:
             self.x = self.my_round(random.randint(0,WINDOW_WIDTH - BLOCK_SIZE))
             self.y = self.my_round(random.randint(0,WINDOW_HEIGHT- BLOCK_SIZE))
         
@@ -112,7 +112,7 @@ class Food:
             self.dx = self.my_round(random.randint(0, WINDOW_WIDTH - BLOCK_SIZE))
             self.dy = self.my_round(random.randint(0, WINDOW_HEIGHT - BLOCK_SIZE))
             
-            while (self.x,self.y) in wall.body_wall and (self.x,self.y) in snake.body:
+            while (self.dx,self.dy) in wall.body_wall or (self.dx,self.dy) in snake.body:
                 self.dx = self.my_round(random.randint(0,WINDOW_WIDTH - BLOCK_SIZE))
                 self.dy = self.my_round(random.randint(0,WINDOW_HEIGHT- BLOCK_SIZE))
                     
@@ -153,7 +153,7 @@ class Food1:
         self.x = self.my_round(random.randint(0, WINDOW_WIDTH - BLOCK_SIZE))
         self.y = self.my_round(random.randint(0, WINDOW_HEIGHT - BLOCK_SIZE))
         
-        while (self.x,self.y) in wall.body_wall and (self.x,self.y) in snake.body:
+        while (self.x,self.y) in wall.body_wall or (self.x,self.y) in snake.body:
             self.x = self.my_round(random.randint(0, WINDOW_WIDTH - BLOCK_SIZE))
             self.y = self.my_round(random.randint(0, WINDOW_HEIGHT - BLOCK_SIZE))
         
@@ -163,7 +163,7 @@ class Food1:
             self.dx = self.my_round(random.randint(0, WINDOW_WIDTH - BLOCK_SIZE))
             self.dy = self.my_round(random.randint(0, WINDOW_HEIGHT - BLOCK_SIZE))
             
-            while (self.x,self.y) in wall.body_wall and (self.x,self.y) in snake.body:
+            while (self.dx,self.dy) in wall.body_wall or (self.dx,self.dy) in snake.body:
                 self.dx = self.my_round(random.randint(0,WINDOW_WIDTH - BLOCK_SIZE))
                 self.dy = self.my_round(random.randint(0,WINDOW_HEIGHT- BLOCK_SIZE))
                     
