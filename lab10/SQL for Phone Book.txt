@@ -1,0 +1,11 @@
+                              
+--create table PhoneBook(Name varchar(255),Surname varchar(255),phone varchar(255) not null);
+
+select * from PhoneBook order by PhoneBook.Name ASC , PhoneBook.Surname ASC;
+
+
+--insert into PhoneBook (Name,Surname,phone) values ('A','A','+7761812566'),('B','B','+7761812566'),('C','C','+7761812566');
+
+--update PhoneBook set PhoneBook.Name = 'another name',PhoneBook.Surname = 'another surname',PhoneBook.phone = '*888888888';
+
+--delete from PhoneBook where PhoneBook.Name = 'A';
