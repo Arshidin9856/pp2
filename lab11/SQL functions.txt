@@ -1,0 +1,100 @@
+1) 
+create or replace function task2(record varchar)
+    returns table
+            (
+                name   varchar,
+                surname varchar,
+                phone  varchar
+            )
+as
+$$
+begin
+    return query
+        select s.name, s.surname, s.phone from phonebook as s where s.name like '%' || record || '%' order by name desc;
+end
+$$ language plpgsql;
+
+select * from task2('n');
+----------------------------------------
+2)
+create or replace procedure addStudent( name varchar, phone varchar)
+as
+$$
+begin
+    if exists (select * from phonebook where $1=phonebook.name) then
+	
+	update phonebook set phone=$2 where $1=phonebook.name;
+	end if;
+	if not exists (select * from phonebook where $1=phonebook.name) then
+	insert into phonebook(name,phone) values ($1,$2);
+	end if;
+
+	
+end;
+$$
+    LANGUAGE plpgsql;
+call addStudent	('name2','888');
+----------------------------------------
+3)
+create or replace procedure addStudentsByList()
+as
+
+$$
+declare 
+ 	student record;
+begin
+	for student in select * from list
+	loop
+		
+	
+		if exists (select * from phonebook where student.name=phonebook.name) then
+			update phonebook set phone=student.phone where student.name =phonebook.name;
+		end if;
+		if not exists (select * from phonebook where student.name=phonebook.name) then
+			insert into phonebook(name,phone) values (student.name,student.phone);
+		end if;
+	end loop;
+    for student in select * from phonebook where not phonebook.phone   ~ '^8\d{10}$'  
+	loop
+		 raise notice 'name=%, phone=%', student.name, student.phone;
+	end loop;
+    --for student in select * from phonebook where not phonebook.phone ~  '^[+]7\d{9}'
+	--loop
+		-- raise notice 'name=%, phone=%', student.name, student.phone;
+--	end loop;
+    
+
+	
+end;
+$$
+    LANGUAGE plpgsql;
+call addStudentsByList();
+----------------------------------------
+4)
+create or replace function pagination(start_point int,how_many int)
+ returns table (id int,name text,phone text)
+as
+$$
+begin
+return query
+	SELECT * FROM list WHERE list.id >=$1 ORDER BY list.id LIMIT $2;
+end
+$$ language plpgsql;
+
+select * from pagination(0,4);
+----------------------------------------
+5)
+create or replace procedure deleteContact(name varchar)
+as
+$$
+begin
+    delete
+    from phonebook as s
+    where s.name = $1;
+end;
+$$
+    LANGUAGE plpgsql;
+
+call deleteContact('YKF4DZQIOTIHK6Q7FOOVIIRPXM8UTWKV');
+
+
