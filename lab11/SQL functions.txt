@@ -1,4 +1,4 @@
-1) 
+1) Function that returns all records based on a pattern (example of pattern: part of name, surname, phone number)
 create or replace function task2(record varchar)
     returns table
             (
@@ -10,13 +10,13 @@ as
 $$
 begin
     return query
-        select s.name, s.surname, s.phone from phonebook as s where s.name like '%' || record || '%' order by name desc;
+        select s.name, s.surname, s.phone from phonebook as s where s.name like '%' || record || '%' order by name desc; 
 end
 $$ language plpgsql;
 
 select * from task2('n');
 ----------------------------------------
-2)
+2)Create procedure to insert new user by name and phone, update phone if user already exists
 create or replace procedure addStudent( name varchar, phone varchar)
 as
 $$
@@ -35,7 +35,7 @@ $$
     LANGUAGE plpgsql;
 call addStudent	('name2','888');
 ----------------------------------------
-3)
+3)Create procedure to insert many new users by list of name and phone. Use loop and if statement in stored procedure. Check correctness of phone in procedure and return all incorrect data.
 create or replace procedure addStudentsByList()
 as
 
@@ -70,7 +70,7 @@ $$
     LANGUAGE plpgsql;
 call addStudentsByList();
 ----------------------------------------
-4)
+4)Create function to querying data from the tables with pagination (by limit and offset)
 create or replace function pagination(start_point int,how_many int)
  returns table (id int,name text,phone text)
 as
@@ -83,7 +83,7 @@ $$ language plpgsql;
 
 select * from pagination(0,4);
 ----------------------------------------
-5)
+5)Implement procedure to deleting data from tables by username or phone
 create or replace procedure deleteContact(name varchar)
 as
 $$
